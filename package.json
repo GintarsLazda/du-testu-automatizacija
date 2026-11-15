@@ -1,0 +1,25 @@
+{
+  "name": "du-testu-automatizacija",
+  "version": "1.0.0",
+  "description": "WebdriverIO + TypeScript testi saucedemo.com lapai (Daugavpils Universitāte, testu automatizācijas kurss)",
+  "scripts": {
+    "test": "wdio run ./wdio.conf.ts",
+    "test:login": "wdio run ./wdio.conf.ts --spec ./test/specs/01-login.spec.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@wdio/cli": "^10.2.0",
+    "@wdio/globals": "^10.2.0",
+    "@wdio/local-runner": "^10.2.0",
+    "@wdio/mocha-framework": "^10.2.0",
+    "@wdio/spec-reporter": "^10.2.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  },
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22.23.4"
+  }
+}
