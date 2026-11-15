@@ -21,7 +21,7 @@ git --version
 ## Sagatavošanās
 
 ```bash
-git clone <repozitorija saite>
+git clone https://github.com/GintarsLazda/du-testu-automatizacija.git
 cd du-testu-automatizacija
 npm install
 npm test
