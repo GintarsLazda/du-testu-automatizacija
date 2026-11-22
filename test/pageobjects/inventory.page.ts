@@ -25,9 +25,15 @@ class InventoryPage {
         await this.removeBtn(product).click()
     }
 
-    // az = nosaukums A-Z, za = nosaukums Z-A, lohi = cena augoši, hilo = cena dilstoši
-    async sortBy(value: 'az' | 'za' | 'lohi' | 'hilo') {
-        await this.sortSelect.selectByAttribute('value', value)
+    // Kārtošana. Izvēlamies pēc teksta, ko lietotājs redz izvēlnē.
+    async sortBy(order: 'nosaukums A-Z' | 'nosaukums Z-A' | 'cena augoši' | 'cena dilstoši') {
+        const options = {
+            'nosaukums A-Z': 'Name (A to Z)',
+            'nosaukums Z-A': 'Name (Z to A)',
+            'cena augoši': 'Price (low to high)',
+            'cena dilstoši': 'Price (high to low)'
+        }
+        await this.sortSelect.selectByVisibleText(options[order])
     }
 
     async openCart() {
