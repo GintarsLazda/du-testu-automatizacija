@@ -5,6 +5,7 @@
   "scripts": {
     "test": "wdio run ./wdio.conf.ts",
     "test:login": "wdio run ./wdio.conf.ts --spec ./test/specs/01-login.spec.ts",
+    "test:api": "wdio run ./wdio.api.conf.ts",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {

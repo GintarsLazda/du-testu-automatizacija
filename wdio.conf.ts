@@ -2,6 +2,14 @@
 // Šeit norādām, KUR ir testi, KĀDĀ pārlūkā tos palaist un KĀ rādīt rezultātus.
 // Pilna dokumentācija: https://webdriver.io/docs/configurationfile
 
+import { existsSync } from 'node:fs'
+
+// Ielādējam .env failu (lietotāji, paroles, adreses), ja tāds ir.
+// Šīs vērtības testos nolasa ar env('NOSAUKUMS'), skat. test/support/env.ts
+if (existsSync('.env')) {
+    process.loadEnvFile('.env')
+}
+
 const headless = process.env.HEADLESS === 'true'
 
 export const config: WebdriverIO.Config = {

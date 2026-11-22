@@ -2,3 +2,6 @@ node_modules/
 logs/
 *.log
 .DS_Store
+
+# Paroles un citi slepeni iestatījumi
+.env
