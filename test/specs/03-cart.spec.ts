@@ -8,11 +8,25 @@
 // Padoms: pogas selektors  [data-test="add-to-cart-sauce-labs-backpack"]
 // Padoms: groza skaitlis   [data-test="shopping-cart-badge"]
 
+
 describe('Iepirkumu grozs', () => {
     it('pēc pievienošanas grozā ir 1 prece', async () => {
-        // Tavs kods šeit
+        // Open the website
+        await browser.url('https://www.saucedemo.com')
 
-        // Izdzēs šo rindu, kad tests ir uzrakstīts:
-        throw new Error('Uzdevums vēl nav izpildīts')
+        // Log in
+        await $('#user-name').setValue('standard_user')
+        await $('#password').setValue('secret_sauce')
+        await $('#login-button').click()
+
+        // Add Sauce Labs Backpack to cart
+        await $('[data-test="add-to-cart-sauce-labs-backpack"]').click()
+
+        // Check that the cart contains 1 item
+        const cartBadge = await $('[data-test="shopping-cart-badge"]')
+
+        await expect(cartBadge).toHaveText('1')
+        
     })
 })
+

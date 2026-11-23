@@ -10,5 +10,6 @@ describe('Login', () => {
         await $('#login-button').click()
 
         await expect($('.title')).toHaveText('Products')
+        await browser.pause(3000)
     })
 })
