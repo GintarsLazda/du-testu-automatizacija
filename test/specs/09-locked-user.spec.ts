@@ -12,9 +12,9 @@ import LoginPage from '../pageobjects/login.page'
 
 describe('Bloķēts lietotājs', () => {
     it('redz kļūdu par bloķēšanu', async () => {
-        // Tavs kods šeit
+        await LoginPage.open()
+        await LoginPage.login('locked_out_user', 'secret_sauce')
 
-        // Izdzēs šo rindu, kad tests ir uzrakstīts:
-        throw new Error('Uzdevums vēl nav izpildīts')
+        await expect(LoginPage.error).toHaveText('locked out', { containing: true })
     })
 })

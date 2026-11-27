@@ -19,9 +19,24 @@ import { env } from '../support/env'
 
 describe('DummyJSON: login', () => {
     it('ar tokenu var nolasīt savu profilu', async () => {
-        // Tavs kods šeit
+        const loginResponse = await fetch(`${env('API_URL')}/auth/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: 'emilys', password: 'emilyspass' })
+        })
 
-        // Izdzēs šo rindu, kad tests ir uzrakstīts:
-        throw new Error('Uzdevums vēl nav izpildīts')
+        expect(loginResponse.status).toBe(200)
+
+        const loginBody: any = await loginResponse.json()
+        expect(loginBody.accessToken).toBeDefined()
+
+        const meResponse = await fetch(`${env('API_URL')}/auth/me`, {
+            headers: { Authorization: `Bearer ${loginBody.accessToken}` }
+        })
+
+        expect(meResponse.status).toBe(200)
+
+        const meBody: any = await meResponse.json()
+        expect(meBody.username).toBe('emilys')
     })
 })

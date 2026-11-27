@@ -12,9 +12,11 @@ import { env } from '../support/env'
 
 describe('DummyJSON: meklēšana', () => {
     it('atrod produktus pēc vārda', async () => {
-        // Tavs kods šeit
+        const response = await fetch(`${env('API_URL')}/products/search?q=phone`)
 
-        // Izdzēs šo rindu, kad tests ir uzrakstīts:
-        throw new Error('Uzdevums vēl nav izpildīts')
+        expect(response.status).toBe(200)
+
+        const body: any = await response.json()
+        expect(body.total).toBeGreaterThan(0)
     })
 })

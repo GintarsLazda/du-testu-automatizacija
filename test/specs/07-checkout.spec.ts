@@ -20,9 +20,16 @@ import { env } from '../support/env'
 
 describe('Pirkums', () => {
     it('lietotājs var nopirkt preci', async () => {
-        // Tavs kods šeit
+        await LoginPage.open()
+        await LoginPage.login(env('SAUCE_USER'), env('SAUCE_PASSWORD'))
 
-        // Izdzēs šo rindu, kad tests ir uzrakstīts:
-        throw new Error('Uzdevums vēl nav izpildīts')
+        await InventoryPage.addToCart('sauce-labs-backpack')
+        await InventoryPage.openCart()
+        await CartPage.checkout()
+
+        await CheckoutPage.fillInformation('Anna', 'Bērziņa', 'LV-5401')
+        await CheckoutPage.finish()
+
+        await expect(CheckoutPage.completeHeader).toHaveText('Thank you for your order!')
     })
 })

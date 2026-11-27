@@ -14,9 +14,11 @@ import { env } from '../support/env'
 
 describe('Izlogošanās', () => {
     it('pēc izlogošanās redzama login lapa', async () => {
-        // Tavs kods šeit
+        await LoginPage.open()
+        await LoginPage.login(env('SAUCE_USER'), env('SAUCE_PASSWORD'))
 
-        // Izdzēs šo rindu, kad tests ir uzrakstīts:
-        throw new Error('Uzdevums vēl nav izpildīts')
+        await InventoryPage.logout()
+
+        await expect(LoginPage.loginBtn).toBeDisplayed()
     })
 })

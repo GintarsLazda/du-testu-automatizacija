@@ -17,9 +17,13 @@ import { env } from '../support/env'
 
 describe('Iepirkumu grozs', () => {
     it('pēc izņemšanas grozs ir tukšs', async () => {
-        // Tavs kods šeit
+        await LoginPage.open()
+        await LoginPage.login(env('SAUCE_USER'), env('SAUCE_PASSWORD'))
 
-        // Izdzēs šo rindu, kad tests ir uzrakstīts:
-        throw new Error('Uzdevums vēl nav izpildīts')
+        await InventoryPage.addToCart('sauce-labs-backpack')
+        await expect(InventoryPage.cartBadge).toHaveText('1')
+
+        await InventoryPage.removeFromCart('sauce-labs-backpack')
+        await expect(InventoryPage.cartBadge).not.toBeExisting()
     })
 })
