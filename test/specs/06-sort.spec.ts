@@ -16,9 +16,22 @@ import { env } from '../support/env'
 
 describe('Produktu kārtošana', () => {
     it('lētākā prece ir pirmā', async () => {
-        // Tavs kods šeit
+        await LoginPage.open()
+        await LoginPage.login(env('SAUCE_USER'), env('SAUCE_PASSWORD'))
 
-        // Izdzēs šo rindu, kad tests ir uzrakstīts:
-        throw new Error('Uzdevums vēl nav izpildīts')
+        await InventoryPage.sortBy('cena augoši')
+
+        const prices = await InventoryPage.itemPrices
+        await expect(prices[0]).toHaveText('$7.99')
+    })
+
+    it('dārgākā prece ir pirmā', async () => {
+        await LoginPage.open()
+        await LoginPage.login(env('SAUCE_USER'), env('SAUCE_PASSWORD'))
+
+        await InventoryPage.sortBy('cena dilstoši')
+
+        const prices = await InventoryPage.itemPrices
+        await expect(prices[0]).toHaveText('$49.99')
     })
 })

@@ -12,9 +12,17 @@ import { env } from '../support/env'
 
 describe('DummyJSON: jauns produkts', () => {
     it('POST /products/add atgriež izveidoto produktu', async () => {
-        // Tavs kods šeit
+        const response = await fetch(`${env('API_URL')}/products/add`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ title: 'DU testa produkts', price: 10 })
+        })
 
-        // Izdzēs šo rindu, kad tests ir uzrakstīts:
-        throw new Error('Uzdevums vēl nav izpildīts')
+        console.log('POST /products/add status:', response.status)
+        expect(response.ok).toBe(true)
+
+        const product: any = await response.json()
+        expect(product.title).toBe('DU testa produkts')
+        expect(product.id).toBeDefined()
     })
 })

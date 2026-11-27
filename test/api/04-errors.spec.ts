@@ -9,16 +9,18 @@ import { env } from '../support/env'
 
 describe('DummyJSON: kļūdas', () => {
     it('neesošs produkts atgriež 404', async () => {
-        // Tavs kods šeit
+        const response = await fetch(`${env('API_URL')}/products/9999`)
 
-        // Izdzēs šo rindu, kad tests ir uzrakstīts:
-        throw new Error('Uzdevums vēl nav izpildīts')
+        expect(response.status).toBe(404)
     })
 
     it('nepareiza parole atgriež 400', async () => {
-        // Tavs kods šeit
+        const response = await fetch(`${env('API_URL')}/auth/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: 'emilys', password: 'wrongpassword' })
+        })
 
-        // Izdzēs šo rindu, kad tests ir uzrakstīts:
-        throw new Error('Uzdevums vēl nav izpildīts')
+        expect(response.status).toBe(400)
     })
 })
